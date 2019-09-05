@@ -3,15 +3,13 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://api.github.com/users/samuel-mpere');
+axios.get('https://api.github.com/users/samuel-mpere')
   .then(response => {
-
+    dataHolder.appendChild(divComponent(response.data));
   })
-
-  .catch()
-  // .catch(error => {
-
-  // });
+  .catch(error => {
+    console.log("Error:", error);
+  });
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -93,7 +91,7 @@ function divComponent (obj){
   cardInfoDiv.appendChild(grandUsers);
   cardInfoDiv.appendChild(username);
   cardInfoDiv.appendChild(location);
-  cardInforDiv.appendChld(profile);
+  cardInfoDiv.appendChild(profile);
   cardInfoDiv.appendChild(followers);
   cardInfoDiv.appendChild(following);
   cardInfoDiv.appendChild(bio);
@@ -104,13 +102,19 @@ function divComponent (obj){
   //setting up  of attributes 
 
   newCardDiv.classList.add('card');
-  newImg.setAttribute('src', 'followersArray.response[avatar_url]');
+  newImg.setAttribute('src',obj['avatar_url']);
   cardInfoDiv.classList.add('card-info');
   grandUsers.classList.add('name');
   username.classList.add('username');
-  userAddress.setAttribute('href', 'followersArray.response[html_url]');
+  userAddress.setAttribute('href', obj['html_url']);
 
+
+  return newCardDiv;
 }
+
+const dataHolder = document.querySelector('.cards');
+
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
