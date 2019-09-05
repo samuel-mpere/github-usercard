@@ -32,7 +32,13 @@ axios.get('https://api.github.com/users/samuel-mpere')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+function getFollowers (followerName) {
+  return axios.get(`https://api.github.com/users/${followerName}`)
+}
+
+const followersArray = ['tetondan', 'dustinmyers','justsml', 'luishrd', 'bigknell', 'Ladrillo', 'Damilolawumi', 'CarnunMP', 'emkayDauda', 'Ofega', 'mikeattara'];
+
+followersArray.forEach(element => getFollowers(element).then(response => dataHolder.appendChild(divComponent(response.data))));
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -54,7 +60,6 @@ const followersArray = [];
 
 */
 
-
 function divComponent (obj){
 
   //declaration of variables 
@@ -71,7 +76,6 @@ function divComponent (obj){
   const following = document.createElement('p');
   const bio = document.createElement('p');
 
-
   //add contents to elements
 
   grandUsers.textContent = obj.name;
@@ -82,12 +86,10 @@ function divComponent (obj){
   bio.textContent = obj.bio;
   userAddress.textContent = obj['html_url'];
 
-
   //fill up parent elements
 
   newCardDiv.appendChild(cardInfoDiv);
   newCardDiv.appendChild(newImg);
-
   cardInfoDiv.appendChild(grandUsers);
   cardInfoDiv.appendChild(username);
   cardInfoDiv.appendChild(location);
@@ -95,19 +97,15 @@ function divComponent (obj){
   cardInfoDiv.appendChild(followers);
   cardInfoDiv.appendChild(following);
   cardInfoDiv.appendChild(bio);
-
   profile.appendChild(userAddress);
 
-
   //setting up  of attributes 
-
   newCardDiv.classList.add('card');
   newImg.setAttribute('src',obj['avatar_url']);
   cardInfoDiv.classList.add('card-info');
   grandUsers.classList.add('name');
   username.classList.add('username');
   userAddress.setAttribute('href', obj['html_url']);
-
 
   return newCardDiv;
 }
