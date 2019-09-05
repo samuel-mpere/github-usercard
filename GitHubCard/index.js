@@ -4,9 +4,11 @@
 */
 
 axios.get('https://api.github.com/users/samuel-mpere');
-  // .then(response => {
+  .then(response => {
 
-  // })
+  })
+
+  .catch()
   // .catch(error => {
 
   // });
@@ -54,6 +56,61 @@ const followersArray = [];
 
 */
 
+
+function divComponent (obj){
+
+  //declaration of variables 
+  
+  const newCardDiv = document.createElement('div');
+  const newImg = document.createElement('img');
+  const cardInfoDiv = document.createElement('div');
+  const grandUsers = document.createElement('h3');
+  const username = document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  const userAddress = document.createElement('a');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+
+
+  //add contents to elements
+
+  grandUsers.textContent = obj.name;
+  username.textContent = obj.login;
+  location.textContent = `Location: ${obj.location}`;
+  followers.textContent = `Followers: ${obj.followers}`;
+  following.textContent = `Following: ${obj.following}`;
+  bio.textContent = obj.bio;
+  userAddress.textContent = obj['html_url'];
+
+
+  //fill up parent elements
+
+  newCardDiv.appendChild(cardInfoDiv);
+  newCardDiv.appendChild(newImg);
+
+  cardInfoDiv.appendChild(grandUsers);
+  cardInfoDiv.appendChild(username);
+  cardInfoDiv.appendChild(location);
+  cardInforDiv.appendChld(profile);
+  cardInfoDiv.appendChild(followers);
+  cardInfoDiv.appendChild(following);
+  cardInfoDiv.appendChild(bio);
+
+  profile.appendChild(userAddress);
+
+
+  //setting up  of attributes 
+
+  newCardDiv.classList.add('card');
+  newImg.setAttribute('src', 'followersArray.response[avatar_url]');
+  cardInfoDiv.classList.add('card-info');
+  grandUsers.classList.add('name');
+  username.classList.add('username');
+  userAddress.setAttribute('href', 'followersArray.response[html_url]');
+
+}
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
